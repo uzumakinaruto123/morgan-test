@@ -7,10 +7,35 @@ import {Component, OnInit} from '@angular/core';
 })
 export class NotesComponent implements OnInit {
   statusList: string[] = ['All', 'Active', 'Completed'];
-  selectedTab : string;
+  selectedTab : string = this.statusList[0];
+
+  public noteInput = {
+    title: '',
+    status: ''
+  };
+
+  public allNotes: Note[] = [];
 
   ngOnInit(): void {
   }
+
+  onNoteAdd() {
+    console.log(this.noteInput, this.allNotes)
+    if(this.noteInput.status && this.noteInput.title) {
+      console.log('add');
+      this.allNotes.push(this.noteInput);
+      this.selectedTab = this.selectedTab;
+      this.resetInputs();
+    }
+  }
+
+  resetInputs() {
+    this.noteInput = {
+      title: '',
+      status: ''
+    };
+  }
+
 
 }
 

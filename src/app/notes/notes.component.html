@@ -1,10 +1,10 @@
 <div class="layout-column align-items-center justify-content-start">
   <section class="layout-row align-items-center justify-content-center mt-30">
-    <input data-test-id="input-note-title" type="text" class="large mx-8"
+    <input data-test-id="input-note-title" [(ngModel)]="noteInput.title" type="text" class="large mx-8"
            placeholder="Note Title"/>
-    <input data-test-id="input-note-status" type="text" class="large mx-8"
+    <input data-test-id="input-note-status" [(ngModel)]="noteInput.status" type="text" class="large mx-8"
            placeholder="Note Status"/>
-    <button class="" data-test-id="submit-button">Add Note</button>
+    <button class="" (click)="onNoteAdd()" data-test-id="submit-button">Add Note</button>
   </section>
 
   <div class="mt-50">
@@ -12,6 +12,7 @@
       <li class="tab-item slide-up-fade-in"
           [attr.data-test-id]="status.toLowerCase() + 'Button'"
           [ngClass]="{'active' : selectedTab.toLowerCase() === status.toLowerCase()}"
+          (click)="selectedTab = status"
           *ngFor="let status of statusList;">
         {{status}}
       </li>
@@ -26,8 +27,9 @@
       </tr>
       </thead>
       <tbody data-test-id="notesList">
-      <tr>
-
+      <tr *ngFor="let note of allNotes | activeStatus: selectedTab">
+        <td>{{note?.title}}</td>
+        <td>{{note?.status}}</td>
       </tr>
       </tbody>
     </table>

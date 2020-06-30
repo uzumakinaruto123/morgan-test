@@ -6,11 +6,13 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {RouterModule} from "@angular/router";
 import {NotesComponent} from './notes/notes.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { StatusPipe } from './status.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotesComponent
+    NotesComponent,
+    StatusPipe
   ],
   imports: [
     BrowserModule,
